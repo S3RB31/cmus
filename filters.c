@@ -126,7 +126,6 @@ static void edit_sel_filter(void)
 		return;
 
 	e = iter_to_filter_entry(&sel);
-
 	snprintf(buf, sizeof(buf), "fset %s=%s", e->name, e->filter);
 	cmdline_set_text(buf);
 	enter_command_mode();
@@ -264,6 +263,28 @@ static int select_filter(const char *name, int sel_stat)
 
 	e->sel_stat = sel_stat;
 	return 0;
+}
+
+static int toggle_filter(const char *name, int sel_stat)
+{
+	struct filter_entry *e = find_filter(name);
+
+	e->sel_stat = (e->sel_stat + 1) % 3;
+	return 0;
+}
+
+void filters_toggle_names(const char *str)
+{
+	/* first validate all filter names */
+	if (str && for_each_name(str, ensure_filter_name))
+		return;
+
+	/* select the filters */
+	if (str)
+		for_each_name(str, toggle_filter);
+
+	/* activate selected */
+	filters_activate(0);
 }
 
 void filters_activate_names(const char *str)

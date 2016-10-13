@@ -546,6 +546,11 @@ err:
 	error_msg("expecting one argument: [+-]INTEGER[mh] or [+-]H:MM:SS");
 }
 
+static void cmd_ftoggle(char *arg)
+{
+	filters_toggle_names(arg);
+}
+
 static void cmd_factivate(char *arg)
 {
 	filters_activate_names(arg);
@@ -2509,6 +2514,7 @@ struct command commands[] = {
 	{ "clear",                 cmd_clear,            0, 1,  NULL,                 0, 0          },
 	{ "colorscheme",           cmd_colorscheme,      1, 1,  expand_colorscheme,   0, 0          },
 	{ "echo",                  cmd_echo,             1, -1, NULL,                 0, 0          },
+	{ "ftoggle",               cmd_ftoggle,          1, 1,  expand_factivate,     0, 0          },
 	{ "factivate",             cmd_factivate,        0, 1,  expand_factivate,     0, 0          },
 	{ "filter",                cmd_filter,           0, 1,  NULL,                 0, 0          },
 	{ "fset",                  cmd_fset,             1, 1,  expand_fset,          0, 0          },

@@ -83,6 +83,7 @@ void filters_set_anonymous(const char *val);
  */
 void filters_set_live(const char *val);
 
+void filters_toggle_names(const char *str);
 void filters_activate_names(const char *str);
 
 void filters_activate(int win_activate);
