@@ -27,7 +27,6 @@
 #include "file.h"
 #include "ui_curses.h"
 #include "xmalloc.h"
-#include "debug.h"
 
 #include <stdio.h>
 #include <ctype.h>
